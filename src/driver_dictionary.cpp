@@ -6,10 +6,15 @@
  * @date    June 2017
  */
 
-#include "dicrtionary.h"
+#include <cassert>
+#include "dictionary.h"
 
 int main()
 {
-	/* TODO */
-	return EXIT_SUCSSESS;
+	DAL dic;
+	assert( not dic.full() );
+	assert( dic.empty() );
+	assert( dic.capacity() == 50 );
+	assert( dic.size() == 0 );
+	return 0;
 }

@@ -8,6 +8,10 @@
 
 #ifndef _DICTIONARY_H_
 #define _DICTIONARY_H_
+
+#include <iostream>
+#include <string>
+
 /*! @brief Dictionary with Array List 
  *	
  * Classe representando um dicionário com armazenamento em vetor não ordenado.
@@ -22,6 +26,11 @@ protected:
 	struct NodeAL { // Estrutura do nó, representando o par chave-informação.
 		Key id; // A chave é um inteiro simples.
 		Data info; // A informação é uma cadeia de caracteres.
+
+		NodeAL( Key k_=0, Data d_=0 ) 
+		: id(k_)
+		, info(d_)
+		{ /*empty*/ }
 	};
 
 	static const int SIZE = 50; // Tamanho default da lista.
@@ -35,15 +44,15 @@ protected:
 
 public:
 
-	DAL ( int  = SIZE );
+	DAL ( int size_ = SIZE );
 
 	virtual ~DAL( void ) { delete[] m_data; };
 
-	bool remove( const t Key & _x, Data & _s ); // Remove da lista.
+	bool remove( const Key & _x, Data & _s ); // Remove da lista.
 
-	bool search( const t Key & _x, Data & _s ) const; // Busca publica.
+	bool search( const Key & _x, Data & _s ) const; // Busca publica.
 
-	bool insert( const t Key & _newKey, const Data & _newInfo ); // Insere na lista.
+	bool insert( const Key & _newKey, const Data & _newInfo ); // Insere na lista.
 
 	Key min( void ) const; // Recupera a menor chave do dicionário.
 
@@ -52,6 +61,14 @@ public:
 	bool sucessor( const Key & _x , Key & _y ) const; // Recupera em _y a chave sucessora a _x , se existir ( true ).
 
 	bool predecessor( const Key & _x , Key & _y ) const; // Recupera em _y a chave antecessora a _x , se existir ( true ).
+
+	bool full( void ) const;
+
+	bool empty( void ) const;
+
+	int capacity( void ) const;
+
+	int size( void ) const;
 
 	// ! Sends back to the output stream an ascii representation for the list.
 	inline friend
@@ -78,9 +95,9 @@ public:
 	virtual ~DSAL( void ) { /* Empty */ };
 
 	// Métodos para sobrescrever .
-	bool remove ( c o n s t Key & _x , Data & );
+	bool remove ( const Key & _x , Data & );
 
-	bool insert ( c o n s t Key & _novaId , c o n s t Data & _novaInfo );
+	bool insert ( const Key & _novaId , const Data & _novaInfo );
 
 	Key min( void ) const; // Recupera a menor chave do dicionário.
 
