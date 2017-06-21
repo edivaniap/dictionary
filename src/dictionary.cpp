@@ -8,14 +8,16 @@
 
 #include "dictionary.h"
 
-DAL::DAL( int size_ )
+template < typename Key, typename Data, typename KeyComparator >
+DAL<Key, Data, KeyComparator>::DAL( int _MaxSz )
 {
-	m_capacity = size_;
+	m_capacity = _MaxSz;
 	m_length = 0;
-	m_data = new NodeAL[ size_ ];
+	m_data = new NodeAL[ _MaxSz ];
 }
 
-bool DAL::insert( const Key & _newKey, const Data & _newInfo )
+template < typename Key, typename Data, typename KeyComparator >
+bool DAL<Key, Data, KeyComparator>::insert( const Key & _newKey, const Data & _newInfo )
 {
 	if( full() )
 		return false;
@@ -26,22 +28,26 @@ bool DAL::insert( const Key & _newKey, const Data & _newInfo )
 	return true;
 }
 
-bool DAL::full() const
+template < typename Key, typename Data, typename KeyComparator >
+bool DAL<Key, Data, KeyComparator>::full() const
 {
 	return ( m_capacity == m_length );
 }
 
-bool DAL::empty() const
+template < typename Key, typename Data, typename KeyComparator >
+bool DAL<Key, Data, KeyComparator>::empty() const
 {
 	return (  m_length == 0 );
 }
 
-int DAL::capacity( void ) const
+template < typename Key, typename Data, typename KeyComparator >
+int DAL<Key, Data, KeyComparator>::capacity( void ) const
 {
 	return m_capacity;
 }
 
-int DAL::size( void ) const
+template < typename Key, typename Data, typename KeyComparator >
+int DAL<Key, Data, KeyComparator>::size( void ) const
 {
 	return m_length;
 }

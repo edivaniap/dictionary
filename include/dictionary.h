@@ -16,12 +16,13 @@
  *	
  * Classe representando um dicionário com armazenamento em vetor não ordenado.
  */
+template < typename Key, typename Data, typename KeyComparator >
 class DAL
 {
 protected:
 
-	using Key = int; // Alias para Chave.
-	using Data = std::string; // Alias para Dado.
+	/*using Key = int; // Alias para Chave.
+	using Data = std::string; // Alias para Dado.*/
 
 	struct NodeAL { // Estrutura do nó, representando o par chave-informação.
 		Key id; // A chave é um inteiro simples.
@@ -44,7 +45,7 @@ protected:
 
 public:
 
-	DAL ( int size_ = SIZE );
+	DAL ( int _MaxSz = SIZE );
 
 	virtual ~DAL( void ) { delete[] m_data; };
 
@@ -82,7 +83,9 @@ public:
 	}
 };
 
-class DSAL : public DAL // Indicação de herança.
+//class DSAL : public DAL // Indicação de herança.
+template < typename Key, typename Data, typename KeyComparator >
+class DSAL : public DAL< Key, Data, KeyComparator > // Indicação de herança.
 {
 private:
 
@@ -90,7 +93,7 @@ private:
 
 public:
 
-	DSAL ( int _MaxSz ) : DAL ( _MaxSz ) { /* Empty */ };
+	DSAL ( int _MaxSz ) : DAL< Key, Data, KeyComparator > ( _MaxSz ) { /* Empty */ };
 
 	virtual ~DSAL( void ) { /* Empty */ };
 
@@ -109,5 +112,7 @@ public:
 	// Recupera em _y a chave antecessora a _x , se existir ( true ).
 	bool predecessor( const Key & _x, Key & _y ) const;
 };
+
+#include "../src/dictionary.cpp"
 
 #endif
