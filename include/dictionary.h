@@ -92,9 +92,17 @@ public:
 	 */
 	Key max( void ) const;
 
-	bool sucessor( const Key & _x , Key & _y ) const; // Recupera em _y a chave sucessora a _x , se existir ( true ).
+	/*!
+	 *  @brief Recupera em _y a chave sucessora a _x.
+	 *  @return True se existir, false caso contrário.
+	 */
+	bool sucessor( const Key & _x , Key & _y ) const;
 
-	bool predecessor( const Key & _x , Key & _y ) const; // Recupera em _y a chave antecessora a _x , se existir ( true ).
+	/*!
+	 *  @brief Recupera em _y a chave antecessora a _x.
+	 *  @return True se existir, false caso contrário.
+	 */
+	bool predecessor( const Key & _x , Key & _y ) const;
 
 	/*! 
 	 *  @brief Informa se o dicionário está lotado ou não.
@@ -151,19 +159,45 @@ public:
 
 	virtual ~DSAL( void ) { /* Empty */ };
 
-	// Métodos para sobrescrever .
-	bool remove ( const Key & _x , Data & );
+	//<! --- Métodos para sobrescrever.
 
+	/*!
+	 *  @brief  Remove informação relacionada a chave _x do array.
+	 *  @param  _x A chave.
+	 *  @return True se a remorção foi bem sucedida, false caso contrário.
+	 */
+	bool remove ( const Key & _x );
+
+	/*!
+	 *  @brief  Insere chave-informação no array, se array não estiver cheio e chave ainda não existir nele.
+	 *  @param  _newKey A nova chave.
+	 *  @param  _newInfo A nova informação.
+	 *  @return True se a inserção foi bem sucedida, false caso contrário.
+	 */
 	bool insert ( const Key & _novaId , const Data & _novaInfo );
 
+	/*!
+	 *  @brief Recupera a menor chave do dicionário.
+	 *  @return A menor chave.
+	 */
 	Key min( void ) const; // Recupera a menor chave do dicionário.
 
+	/*!
+	 *  @brief Recupera a maior chave do dicionário.
+	 *  @return A maior chave.
+	 */
 	Key max( void ) const; // Recupera a maior chave do dicionário.
 
-	// Recupera em _y a chave sucessora a _x , se existir ( true ).
+	/*!
+	 *  @brief Recupera em _y a chave sucessora a _x.
+	 *  @return True se existir, false caso contrário.
+	 */
 	bool sucessor( const Key & _x, Key & _y ) const;
 
-	// Recupera em _y a chave antecessora a _x , se existir ( true ).
+	/*!
+	 *  @brief Recupera em _y a chave antecessora a _x.
+	 *  @return True se existir, false caso contrário.
+	 */
 	bool predecessor( const Key & _x, Key & _y ) const;
 };
 

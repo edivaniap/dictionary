@@ -7,15 +7,17 @@ DAL:
 - [X] Capacity
 - [X] Insert
 - [X] Remove
-- [ ] Min and Max
+- [X] Search
+- [X] Min and Max
 - [ ] Sucessor and Predecessor
+- [X] Auxiliar search 
 
 DSAL:
-- [ ] Special members
 - [ ] Insert
 - [ ] Remove
 - [ ] Min and Max
 - [ ] Sucessor and Predecessor
+- [ ] Auxiliar search 
 
 ## Compiling
 	`$ make`

@@ -105,3 +105,57 @@ int DAL<Key, Data, KeyComparator>::size( void ) const
 {
 	return m_length;
 }
+
+template < typename Key, typename Data, typename KeyComparator >
+Key DAL<Key, Data, KeyComparator>::min( void ) const
+{
+	KeyComparator compare; //<! functor que comparará as chaves
+	
+	Key min = m_data[0].id;//<! define um valor minimo
+
+	for (int i = 1; i < m_length; ++i)
+		if( compare( m_data[i].id, min ) )
+			min = m_data[i].id; //<! caso encontre uma chave menor ainda, ela se torna o novor minimo
+
+	return min;
+}
+
+template < typename Key, typename Data, typename KeyComparator >
+Key DAL<Key, Data, KeyComparator>::max( void ) const
+{
+	KeyComparator compare; //<! functor que comparará as chaves
+	
+	Key max = m_data[0].id;//<! define um valor maximo
+
+	for (int i = 1; i < m_length; ++i)
+		if( compare( max, m_data[i].id ) )
+			max = m_data[i].id; //<! caso encontre uma chave maior ainda, ela se torna o novo maximo
+
+	return max;
+}
+
+template < typename Key, typename Data, typename KeyComparator >
+bool DAL<Key, Data, KeyComparator>::search( const Key & _x, Data & _s ) const
+{
+	//<! se não achar elemento : false
+	if( _search( _x ) == -1 )
+		return false;
+
+	//<! caso contrário, recupera em _s informação : true
+	_s = m_data[_search( _x )].info;
+	return true;
+}
+
+template < typename Key, typename Data, typename KeyComparator >
+bool sucessor( const Key & _x , Key & _y ) const
+{
+	/*todo*/
+	return false;
+}
+
+template < typename Key, typename Data, typename KeyComparator >
+bool predecessor( const Key & _x , Key & _y ) const
+{
+	/*todo*/
+	return false;
+}

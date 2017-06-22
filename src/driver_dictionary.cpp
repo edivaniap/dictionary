@@ -55,6 +55,17 @@ int main()
 		assert( dict.size() == 5 );
 		std::cout << ">> dictionary: " << dict << std::endl;
 
+		//teste min e max
+		assert( dict.min() ==  0 );
+		assert( dict.max() ==  7 );
+
+		//teste search
+		float elem;
+		assert( dict.search(2, elem) ); //existe
+		assert( elem == 745.3f );   //valor recuperado na busca
+		assert( dict.search(8, elem) == false ); //nao existe
+		assert( elem == 745.3f );   //continua valor anterior pois não foi setado
+
 		//teste remove
 		std::cout << "\n>>> teste 3: removes\n\n";
 		assert( dict.remove(5) == false ); //nao existe
@@ -66,6 +77,7 @@ int main()
 		assert( dict.remove(6) );
 		assert( dict.remove(7) == false ); //dicionario vazio
 		std::cout << ">> dictionary: " << dict << std::endl;
+
 	}
 
 	/* Testando com tipo de dado string */
