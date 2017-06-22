@@ -1,7 +1,7 @@
 /*!
  * @file    dictionary.h
- * @title   Lib dictionary
- * @brief   
+ * @title   Lib dictionary : DAL
+ * @brief   Implementação dos métodos do DAL
  * @author  Edivânia Pontes (edivaniapts@gmail.com)
  * @date    June 2017
  */
@@ -150,7 +150,6 @@ public:
  *	
  * Classe representando um dicionário com armazenamento em vetor ordenado.
  */
-//class DSAL : public DAL // Indicação de herança.
 template < typename Key, typename Data, typename KeyComparator >
 class DSAL : public DAL< Key, Data, KeyComparator > // Indicação de herança.
 {
@@ -175,7 +174,7 @@ public:
 
 	/*!
 	 *  @brief  Remove informação relacionada a chave _x do array.
-	 *			Usa a nova busca (binária).
+	 *	@note	Usa a nova busca (binária).
 	 *  @param  _x A chave.
 	 *  @return True se a remorção foi bem sucedida, false caso contrário.
 	 */
@@ -183,7 +182,7 @@ public:
 
 	/*!
 	 *  @brief  Insere chave-informação no array, se array não estiver cheio e chave ainda não existir nele.
-	 *			Usa o método inserção ordenada.
+	 *	@note	Usa o método inserção ordenada.
 	 *  @param  _newKey  A nova chave.
 	 *  @param  _newInfo A nova informação.
 	 *  @return True se a inserção foi bem sucedida, false caso contrário.
@@ -192,33 +191,34 @@ public:
 
 	/*!
 	 *  @brief Recupera a menor chave do dicionário.
-	 *         Como o array está ordenado, ele retorna a chave do primeiro elemento no array.
+	 *  @note  Como o array está ordenado, ele retorna a chave do primeiro elemento no array.
 	 *  @return A menor chave.
 	 */
 	Key min( void ) const; // Recupera a menor chave do dicionário.
 
 	/*!
 	 *  @brief Recupera a maior chave do dicionário.
-	 *         Como o array está ordenado, ele retorna a chave do último elemento no array.
+	 *  @note  Como o array está ordenado, ele retorna a chave do último elemento no array.
 	 *  @return A maior chave.
 	 */
 	Key max( void ) const; // Recupera a maior chave do dicionário.
 
 	/*!
 	 *  @brief Recupera em _y a chave sucessora a _x.
-	 *	       Usa a nova busca (binária).
+	 *	@note  Usa a nova busca (binária).
 	 *  @return True se existir, false caso contrário.
 	 */
 	bool sucessor( const Key & _x, Key & _y ) const;
 
 	/*!
 	 *  @brief Recupera em _y a chave antecessora a _x.
-	 *         Usa a nova busca (binária).
+	 *  @note  Usa a nova busca (binária).
 	 *  @return True se existir, false caso contrário.
 	 */
 	bool predecessor( const Key & _x, Key & _y ) const;
 };
 
 #include "dictionary.cpp"
+#include "dsal.h"
 
 #endif
