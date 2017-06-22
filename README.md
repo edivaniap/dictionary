@@ -9,8 +9,9 @@ DAL:
 - [X] Remove
 - [X] Search
 - [X] Min and Max
-- [ ] Sucessor and Predecessor
-- [X] Auxiliar search 
+- [X] Sucessor and Predecessor
+- [X] Auxiliar search
+- [X] Testings
 
 DSAL:
 - [ ] Insert
@@ -18,6 +19,7 @@ DSAL:
 - [ ] Min and Max
 - [ ] Sucessor and Predecessor
 - [ ] Auxiliar search 
+- [ ] Testings
 
 ## Compiling
 	`$ make`

@@ -68,8 +68,10 @@ bool DAL<Key, Data, KeyComparator>::remove( const Key & _x )
 		return false;
 	}
 
+	int indice = _search( _x );
+
 	//<! verifica se existe dado com a chave passada
-	if( _search( _x ) == -1 )
+	if( indice == -1 )
 	{
 		std::cout << ">> [ remove() ] Error: key not found on the dictionary!\n";
 		return false;
@@ -77,7 +79,7 @@ bool DAL<Key, Data, KeyComparator>::remove( const Key & _x )
 
 	//<! removendo dado do array
 	//dado na posição que contém a chave passada passa a ser o último dado do array, e diminui o comprimento
-	m_data[ _search( _x ) ] = m_data[--m_length]; 
+	m_data[ indice ] = m_data[--m_length]; 
 
 	return true;
 }
@@ -137,25 +139,41 @@ Key DAL<Key, Data, KeyComparator>::max( void ) const
 template < typename Key, typename Data, typename KeyComparator >
 bool DAL<Key, Data, KeyComparator>::search( const Key & _x, Data & _s ) const
 {
+	int indice = _search( _x );
+
 	//<! se não achar elemento : false
-	if( _search( _x ) == -1 )
+	if( indice == -1 )
 		return false;
 
 	//<! caso contrário, recupera em _s informação : true
-	_s = m_data[_search( _x )].info;
+	_s = m_data[ indice ].info;
 	return true;
 }
 
 template < typename Key, typename Data, typename KeyComparator >
-bool sucessor( const Key & _x , Key & _y ) const
+bool DAL<Key, Data, KeyComparator>::sucessor( const Key & _x , Key & _y ) const
 {
-	/*todo*/
-	return false;
+	int indice = _search( _x );
+
+	//<! se não achar elemento ou se for o último indice : false
+	if( indice == -1 or indice == (m_length - 1) )
+		return false;
+
+	//<! caso contrário, recupera em _y informação : true
+	_y = m_data[ indice+1 ].id;
+	return true;
 }
 
 template < typename Key, typename Data, typename KeyComparator >
-bool predecessor( const Key & _x , Key & _y ) const
+bool DAL<Key, Data, KeyComparator>::predecessor( const Key & _x , Key & _y ) const
 {
-	/*todo*/
-	return false;
+	int indice = _search( _x );
+
+	//<! se não achar elemento ou se for o primeiro indice : false
+	if( indice == -1 or indice == 0 )
+		return false;
+
+	//<! caso contrário, recupera em _y informação : true
+	_y = m_data[ indice-1 ].id;
+	return true;
 }

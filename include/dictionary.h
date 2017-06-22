@@ -31,7 +31,7 @@ protected:
 		Key id;    // A chave é um inteiro simples.
 		Data info; // A informação é uma cadeia de caracteres.
 
-		NodeAL( Key k_=0, Data d_=0 )
+		NodeAL( Key k_= Key(), Data d_= Data() )
 		{
 			id = k_;
 			info = d_; 
@@ -43,11 +43,16 @@ protected:
 	int m_capacity;             //<! Capacidade máxima de armazenamento.
 	NodeAL * m_data ; 			//<! Área de armazenamento : vetor alocado dinamicamente.
 
-	int _search( const Key & _x ) const; // Método de busca auxiliar.
+	/*!
+	 *  @brief Método de busca auxiliar usando busca linear simples através de uma chave.
+	 *  @param _x A chave.
+	 *  @return O indice do elemento encontrado.
+	 */
+	int _search( const Key & _x ) const;
 
 public:
 	/*! 
-	 *  @brief Construtor que aloca dinamicamente em *m_data um vetor cujo tamanho é determinado passado por _MaxSz;
+	 *  @brief Construtor que aloca dinamicamente em *m_data um vetor cujo tamanho é determinado passado por _MaxSz.
 	 *	@param _MaxSz O tamanho da capacidade. 
 	 */
 	DAL( int _MaxSz = SIZE );
@@ -74,7 +79,7 @@ public:
 
 	/*!
 	 *  @brief  Insere chave-informação no array, se array não estiver cheio e chave ainda não existir nele.
-	 *  @param  _newKey A nova chave.
+	 *  @param  _newKey  A nova chave.
 	 *  @param  _newInfo A nova informação.
 	 *  @return True se a inserção foi bem sucedida, false caso contrário.
 	 */
@@ -151,10 +156,17 @@ class DSAL : public DAL< Key, Data, KeyComparator > // Indicação de herança.
 {
 private:
 
+	/*!
+	 *  @brief Método de busca auxiliar usando busca binária iterativa a partir de uma chave.
+	 *  @param _x A chave.
+	 *  @return O indice do elemento encontrado.
+	 */
 	int _search ( const Key & _x ) const ; // Método de busca auxiliar.
 
 public:
-
+	/*! 
+	 *  @brief Construtor cópia do DAL. 
+	 */
 	DSAL ( int _MaxSz ) : DAL< Key, Data, KeyComparator > ( _MaxSz ) { /* Empty */ };
 
 	virtual ~DSAL( void ) { /* Empty */ };
@@ -163,6 +175,7 @@ public:
 
 	/*!
 	 *  @brief  Remove informação relacionada a chave _x do array.
+	 *			Usa a nova busca (binária).
 	 *  @param  _x A chave.
 	 *  @return True se a remorção foi bem sucedida, false caso contrário.
 	 */
@@ -170,7 +183,8 @@ public:
 
 	/*!
 	 *  @brief  Insere chave-informação no array, se array não estiver cheio e chave ainda não existir nele.
-	 *  @param  _newKey A nova chave.
+	 *			Usa o método inserção ordenada.
+	 *  @param  _newKey  A nova chave.
 	 *  @param  _newInfo A nova informação.
 	 *  @return True se a inserção foi bem sucedida, false caso contrário.
 	 */
@@ -178,24 +192,28 @@ public:
 
 	/*!
 	 *  @brief Recupera a menor chave do dicionário.
+	 *         Como o array está ordenado, ele retorna a chave do primeiro elemento no array.
 	 *  @return A menor chave.
 	 */
 	Key min( void ) const; // Recupera a menor chave do dicionário.
 
 	/*!
 	 *  @brief Recupera a maior chave do dicionário.
+	 *         Como o array está ordenado, ele retorna a chave do último elemento no array.
 	 *  @return A maior chave.
 	 */
 	Key max( void ) const; // Recupera a maior chave do dicionário.
 
 	/*!
 	 *  @brief Recupera em _y a chave sucessora a _x.
+	 *	       Usa a nova busca (binária).
 	 *  @return True se existir, false caso contrário.
 	 */
 	bool sucessor( const Key & _x, Key & _y ) const;
 
 	/*!
 	 *  @brief Recupera em _y a chave antecessora a _x.
+	 *         Usa a nova busca (binária).
 	 *  @return True se existir, false caso contrário.
 	 */
 	bool predecessor( const Key & _x, Key & _y ) const;
