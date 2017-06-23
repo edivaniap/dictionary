@@ -1,7 +1,8 @@
 /*!
  * @file    dictionary.h
- * @title   Lib dictionary : DAL
- * @brief   Implementação dos métodos do DAL
+ * @title   Lib dictionary
+ * @brief   DAL and DSAL class configuration
+ * @note    DAL: Dictionary with Array List and DSAL: Dictionary with Sorted Array List
  * @author  Edivânia Pontes (edivaniapts@gmail.com)
  * @date    June 2017
  */
@@ -139,7 +140,7 @@ public:
 		_os << "[ ";
 		for ( int i (0); i < _oList.m_length; ++i )
 			_os << " { id : " << _oList.m_data[ i ].id << ", info : "
-			    << _oList.m_data [ i ].info << " }  ";
+			    << _oList.m_data[ i ].info << " }  ";
 		_os << "]";
 		return _os;
 	}
@@ -160,7 +161,7 @@ private:
 	 *  @param _x A chave.
 	 *  @return O indice do elemento encontrado.
 	 */
-	int _search ( const Key & _x ) const ; // Método de busca auxiliar.
+	int _search ( const Key & _x ) const ;
 
 public:
 	/*! 
@@ -178,16 +179,16 @@ public:
 	 *  @param  _x A chave.
 	 *  @return True se a remorção foi bem sucedida, false caso contrário.
 	 */
-	bool remove ( const Key & _x );
+	bool remove( const Key & _x );
 
 	/*!
 	 *  @brief  Insere chave-informação no array, se array não estiver cheio e chave ainda não existir nele.
-	 *	@note	Usa o método inserção ordenada.
+	 *	@note	Usa o método inserção ordenada em array já ordenado.
 	 *  @param  _newKey  A nova chave.
 	 *  @param  _newInfo A nova informação.
 	 *  @return True se a inserção foi bem sucedida, false caso contrário.
 	 */
-	bool insert ( const Key & _novaId , const Data & _novaInfo );
+	bool insert( const Key & _novaId , const Data & _novaInfo );
 
 	/*!
 	 *  @brief Recupera a menor chave do dicionário.
@@ -218,7 +219,7 @@ public:
 	bool predecessor( const Key & _x, Key & _y ) const;
 };
 
-#include "dictionary.cpp"
-#include "dsal.h"
+#include "dal.cpp"
+#include "dsal.cpp"
 
 #endif

@@ -1,7 +1,7 @@
 /*!
- * @file    dictionary.cpp
- * @title   Lib dictionary
- * @brief   
+ * @file    dal.cpp
+ * @title   Lib dictionary : DAL
+ * @brief   Implementação dos métodos do DAL
  * @author  Edivânia Pontes (edivaniapts@gmail.com)
  * @date    June 2017
  */
@@ -156,8 +156,17 @@ bool DAL<Key, Data, KeyComparator>::sucessor( const Key & _x , Key & _y ) const
 	int indice = _search( _x );
 
 	//<! se não achar elemento ou se for o último indice : false
-	if( indice == -1 or indice == (m_length - 1) )
+	if( indice == -1 )
+	{
+		std::cout << ">> [ sucessor() ] Error: key not found on the dictionary!\n";
 		return false;
+	}
+
+	if( indice == (m_length - 1) )
+	{
+		std::cout << ">> [ sucessor() ] Error: cannot recover sucessor from the last key on array!\n";
+		return false;
+	}
 
 	//<! caso contrário, recupera em _y informação : true
 	_y = m_data[ indice+1 ].id;
@@ -170,8 +179,17 @@ bool DAL<Key, Data, KeyComparator>::predecessor( const Key & _x , Key & _y ) con
 	int indice = _search( _x );
 
 	//<! se não achar elemento ou se for o primeiro indice : false
-	if( indice == -1 or indice == 0 )
+	if( indice == -1 )
+	{
+		std::cout << ">> [ predecessor() ] Error: key not found on the dictionary!\n";
 		return false;
+	}
+
+	if( indice == 0 )
+	{
+		std::cout << ">> [ predecessor() ] Error: cannot recover predecessor from the first key on array!\n";
+		return false;
+	}
 
 	//<! caso contrário, recupera em _y informação : true
 	_y = m_data[ indice-1 ].id;
