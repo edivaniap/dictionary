@@ -14,12 +14,12 @@ DAL:
 - [X] Testings
 
 DSAL:
-- [ ] Insert
-- [ ] Remove
-- [ ] Min and Max
-- [ ] Sucessor and Predecessor
-- [ ] Auxiliar search 
-- [ ] Testings
+- [X] Insert
+- [X] Remove
+- [X] Min and Max
+- [X] Sucessor and Predecessor
+- [X] Auxiliar search 
+- [X] Testings
 
 ## Compiling
 	`$ make`
