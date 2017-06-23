@@ -114,13 +114,8 @@ Key DSAL<Key, Data, KeyComparator>::min( void ) const
 template < typename Key, typename Data, typename KeyComparator >
 Key DSAL<Key, Data, KeyComparator>::max( void ) const
 {
-	return DAL< Key, Data, KeyComparator >::m_data[ DAL< Key, Data, KeyComparator >::m_length -1 ].id;
+	return DAL< Key, Data, KeyComparator >::m_data[ DAL< Key, Data, KeyComparator >::m_length-1 ].id;
 }
-	/*!
-	 *  @brief Recupera em _y a chave sucessora a _x.
-	 *	@note  Usa a nova busca (binária).
-	 *  @return True se existir, false caso contrário.
-	 */
 
 template < typename Key, typename Data, typename KeyComparator >
 bool DSAL<Key, Data, KeyComparator>::sucessor( const Key & _x, Key & _y ) const
@@ -162,7 +157,6 @@ bool DSAL<Key, Data, KeyComparator>::predecessor( const Key & _x, Key & _y ) con
 		std::cout << ">> [ predecessor() ] Error: cannot recover predecessor from the first key on array!\n";
 		return false;
 	}
-
 
 	//<! caso contrário, recupera em _y informação : true
 	_y = DAL< Key, Data, KeyComparator >::m_data[ indice-1 ].id;
