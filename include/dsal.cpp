@@ -9,11 +9,7 @@
 #include "dictionary.h"
 
 //#define DAL< Key, Data, KeyComparator > DAL< Key, Data, KeyComparator >< Key, Data, KeyComparator > // Alias para DAL< Key, Data, KeyComparator >
-	/*!
-	 *  @brief Método de busca auxiliar usando busca binária iterativa a partir de uma chave.
-	 *  @param _x A chave.
-	 *  @return O indice do elemento encontrado.
-	 */
+
 template < typename Key, typename Data, typename KeyComparator >
 int DSAL<Key, Data, KeyComparator>::_search ( const Key & _x ) const
 {
