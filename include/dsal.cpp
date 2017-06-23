@@ -104,7 +104,6 @@ bool DSAL<Key, Data, KeyComparator>::insert( const Key & _novaId , const Data & 
 	return true;
 }
 
-
 template < typename Key, typename Data, typename KeyComparator >
 Key DSAL<Key, Data, KeyComparator>::min( void ) const
 {
